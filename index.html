@@ -82,11 +82,7 @@
     <div class="entry">
       
         <p>今天搞Ionic开发的时候使用cordova-plugin-camera<br>在调用getPicture方法时遇到plugin_not_installed错误<br>搜索stackoverflow找到解决的方法，原因是调用native方法时候需要调用Platform Api中的ready方法</p>
-<p>代码如下：</p>
-<blockquote>
-<p>this.platform.ready().then(()=&gt;{<br>     //这里放native调用<br>   this.camera.getPicture(options).then((imageData) =&gt; {<br>       //TODO<br>   }, (err) =&gt; {</p>
-<p>   });<br>});</p>
-</blockquote>
+<p>代码如下：<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.platform.ready().then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">     <span class="comment">//这里放native调用</span></span><br><span class="line">    <span class="keyword">this</span>.camera.getPicture(options).then(<span class="function">(<span class="params">imageData</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//TODO</span></span><br><span class="line">    &#125;, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>对于其他Native组件如果报同样的错应该也要这么做</p>
 
       
